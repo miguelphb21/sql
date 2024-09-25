@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `livros_off` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `livros_off`;
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
 -- Host: localhost    Database: livros_off
 -- ------------------------------------------------------
--- Server version	8.0.38
+-- Server version	8.0.39-0ubuntu0.24.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,13 +26,10 @@ DROP TABLE IF EXISTS `livros`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `livros` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `titulo` varchar(200) NOT NULL,
+  `titulo` varchar(100) NOT NULL,
+  `preco_venda` decimal(10,2) NOT NULL,
   `genero` varchar(30) DEFAULT NULL,
-  `estoque_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `estoque_id` (`estoque_id`),
-  CONSTRAINT `livros_ibfk_1` FOREIGN KEY (`estoque_id`) REFERENCES `estoque` (`id`),
-  CONSTRAINT `livros_ibfk_2` FOREIGN KEY (`estoque_id`) REFERENCES `estoque` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -54,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-23  9:22:27
+-- Dump completed on 2024-09-24 22:28:37

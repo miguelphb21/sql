@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `livros_off` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `livros_off`;
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
 -- Host: localhost    Database: livros_off
 -- ------------------------------------------------------
--- Server version	8.0.38
+-- Server version	8.0.39-0ubuntu0.24.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -28,8 +28,11 @@ CREATE TABLE `pedidos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_cliente` int DEFAULT NULL,
   `id_livro` int DEFAULT NULL,
-  `quantidade` int DEFAULT NULL,
-  `valor_da_venda` decimal(10,2) DEFAULT NULL,
+  `cidade` varchar(100) NOT NULL,
+  `bairro` varchar(100) NOT NULL,
+  `rua` varchar(100) NOT NULL,
+  `quantidade` int NOT NULL,
+  `preco` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_cliente` (`id_cliente`),
   KEY `id_livro` (`id_livro`),
@@ -56,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-23  9:22:27
+-- Dump completed on 2024-09-24 22:28:37
