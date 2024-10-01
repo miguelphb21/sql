@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `livros_off` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `livros_off`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
 -- Host: localhost    Database: livros_off
@@ -28,9 +26,6 @@ CREATE TABLE `pedidos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_cliente` int DEFAULT NULL,
   `id_livro` int DEFAULT NULL,
-  `cidade` varchar(100) NOT NULL,
-  `bairro` varchar(100) NOT NULL,
-  `rua` varchar(100) NOT NULL,
   `quantidade` int NOT NULL,
   `preco` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -59,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-24 22:28:37
+-- Dump completed on 2024-10-01  6:45:34

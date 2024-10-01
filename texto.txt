@@ -1,81 +1,126 @@
+-- Criação do BD livros_off
+
 create database livros_off;
 
+-- codigo para usar o db
 use livros_off;
 
--- Deletar as tabelas
+-- criação da tabela CLIENTES
 
-drop table clientes;
-drop table estoque;
-drop table livros;
-drop table pedidos;
+CREATE TABLE clientes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    sobrenome VARCHAR(200) NOT NULL,
+    data_de_nascimento DATE NOT NULL,
+	sexo ENUM('m', 'f', 'ni'),
+    telefone varchar(20),
+    estado varchar(100) not null,
+	cidade VARCHAR(100) NOT NULL,
+    bairro VARCHAR(100) NOT NULL,
+    rua VARCHAR(100) NOT NULL,
+    numero varchar(100) not null,
+    email VARCHAR(200) NOT NULL,
+    senha VARCHAR(100)
+);
+ALTER TABLE clientes ADD COLUMN reset_password_token VARCHAR(255) NULL,
+ADD COLUMN reset_password_expires DATETIME NULL;
 
--- Criação das tabelas & Alterações
+/* EMAIL/SENHA de um usuário
+{
+"email": "gabriel.rochaphb@gmail.com", 
+"senha":"Kevindvd21"
+},
+{
+"email": "miguelphb@gmail.com", 
+"senha":"Miguelphb1"
+}
+*/
 
-create table clientes (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(255) NOT NULL,
-    data_de_nascimento DATE,
-    sexo VARCHAR(30),
-    endereco_id int,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    senha varchar(100) NOT NULL
+-- criação da tabela autor
+
+CREATE TABLE autor (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(255),
+    nacionalidade VARCHAR(150),
+    data_de_nascimento DATE
 );
 
--- Criação da chave estrangeira na tabela clientes,ligando a tabela de endereço
-ALTER TABLE clientes ADD FOREIGN KEY(endereco_id)  REFERENCES endereco(id);
 
-create table endereco (
+-- criação da tabela LIVROS
+
+CREATE TABLE livros (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(100) NOT NULL,
+    preco_venda DECIMAL(10 , 2 ) NOT NULL,
+    subgenero VARCHAR(30),
+    editora VARCHAR(50),
+    id_autor INT,
+    FOREIGN KEY (id_autor) REFERENCES autor (id)
+);
+
+-- criação da tabela ESTOQUE
+
+create table estoque(
 	id int primary key auto_increment,
-    id_cliente int,
-	estado varchar (2),
-    cidade varchar(75) not null,
-    rua varchar(75) not null,
-    bairro varchar(75) not null,
-    foreign key (id_cliente) references clientes(id)
-);
-
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'migueldsds.18';
-FLUSH PRIVILEGES; 
-
-
-create table livros (
-	id_livro int,
-    titulo VARCHAR(200) NOT NULL,
-    genero VARCHAR(30),
-    estoque_id INT
-);
-
--- adicao da chave estrangeira estoque na tabela de livros
-
-ALTER TABLE livros ADD FOREIGN KEY(estoque_id) REFERENCES estoque(id);
-
-create table carrinho (
-	id int primary key auto_increment,
-    cliente_id int,
-    livro_id int,
+    id_livro int,
     quantidade int,
-    foreign key(cliente_id) references clientes(id),
-    foreign key(livro_id) references livros(id)
+    valor_do_livro decimal(10,2),
+    disponivel boolean,
+    foreign key(id_livro) references livros(id)
 );
 
-create table pedidos (
-	id INT PRIMARY KEY AUTO_INCREMENT,
+
+-- adição de dados na tabela livros
+
+INSERT INTO livros (titulo, preco_venda, subgenero, editora, id_autor) values 
+('harry potter e a ordem da fenix',69.90,'fantasia','Rocco',4),
+('contos de horror da mimi',49.90,'horror','Darkside Books',3),
+('jantar secreto',39.90,'suspense','Companhia das Letras',2),
+('o alienista',39.90,'Realismo Crítico','Companhia de Letras',1),
+('Harry Potter e a Pedra Filosofal',39.90,'fantasia','Rocco',4),
+('Tomie vol.1', 49.90,'horror','Darkside Books',4);
+
+-- Adição de dados na tabela Autor
+
+INSERT INTO autor (nome, nacionalidade, data_de_nascimento) values 
+('Machado de Assis', 'brasileiro',18390621),
+('Raphael Montes','brasileiro', 19900922),
+('Junji Ito','japonês',19630731),
+('J. K. Rowling','britânica', 19650731);
+
+-- Adição na tabela estoque
+
+INSERT INTO estoque 
+(id_livro, quantidade, valor_do_livro, disponivel) values 
+(1,50,49.90,true),
+(2,20,29.90,true),
+(3,30,24.90,true),
+(4,20,29.90 ,true),
+(6, 30, 19.90,true),
+(5, 50, 27.90,true);
+
+-- criação da tabela carrinho
+
+CREATE TABLE carrinho (
+    id INT PRIMARY KEY AUTO_INCREMENT,
     id_cliente INT,
     id_livro INT,
     quantidade INT,
-    valor_da_venda DECIMAL(10, 2),
-    FOREIGN KEY (id_cliente) REFERENCES clientes(id),
-    FOREIGN KEY (id_livro) REFERENCES livros(id)
+    forma_de_pagamento VARCHAR(20),
+    valor_total DECIMAL(10 , 2 ),
+    data_adicao DATE,
+    FOREIGN KEY (id_cliente) REFERENCES clientes (id),
+    FOREIGN KEY (id_livro) REFERENCES livros (id)
 );
 
-create table estoque (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-    nome varchar(255),
-    quantidade INT,
-    valor_de_custo decimal(10, 2),
-    descricao varchar(1000)
+-- criação da tabela PEDIDOS
+
+CREATE TABLE pedidos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_cliente int,
+    id_livro int,
+    quantidade INT NOT NULL,
+    preco DECIMAL(10 , 2 ),
+	foreign key(id_cliente) references clientes(id),
+    foreign key(id_livro) references livros(id)
 );
-
-
-
-

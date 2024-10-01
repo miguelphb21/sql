@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `livros_off` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `livros_off`;
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
 -- Host: localhost    Database: livros_off
 -- ------------------------------------------------------
--- Server version	8.0.38
+-- Server version	8.0.39-0ubuntu0.24.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -18,36 +16,36 @@ USE `livros_off`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `pedidos`
+-- Table structure for table `carrinho`
 --
 
-DROP TABLE IF EXISTS `pedidos`;
+DROP TABLE IF EXISTS `carrinho`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pedidos` (
+CREATE TABLE `carrinho` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_cliente` int DEFAULT NULL,
   `id_livro` int DEFAULT NULL,
-  `cidade` varchar(100) NOT NULL,
-  `bairro` varchar(100) NOT NULL,
-  `rua` varchar(100) NOT NULL,
-  `quantidade` int NOT NULL,
-  `preco` decimal(10,2) DEFAULT NULL,
+  `quantidade` int DEFAULT NULL,
+  `forma_de_pagamento` varchar(20) DEFAULT NULL,
+  `valor_total` decimal(10,2) DEFAULT NULL,
+  `data_adicao` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_cliente` (`id_cliente`),
   KEY `id_livro` (`id_livro`),
-  CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id`),
-  CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`id_livro`) REFERENCES `livros` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `carrinho_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id`),
+  CONSTRAINT `carrinho_ibfk_2` FOREIGN KEY (`id_livro`) REFERENCES `livros` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pedidos`
+-- Dumping data for table `carrinho`
 --
 
-LOCK TABLES `pedidos` WRITE;
-/*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
+LOCK TABLES `carrinho` WRITE;
+/*!40000 ALTER TABLE `carrinho` DISABLE KEYS */;
+INSERT INTO `carrinho` VALUES (1,1,1,1,'pix',49.90,'2024-09-30'),(2,1,1,1,'pix',49.90,'2024-09-30');
+/*!40000 ALTER TABLE `carrinho` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -59,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-25 10:49:27
+-- Dump completed on 2024-10-01  6:45:34

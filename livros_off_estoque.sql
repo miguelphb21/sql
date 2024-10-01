@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `livros_off` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `livros_off`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
 -- Host: localhost    Database: livros_off
@@ -28,10 +26,12 @@ CREATE TABLE `estoque` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_livro` int DEFAULT NULL,
   `quantidade` int DEFAULT NULL,
+  `valor_do_livro` decimal(10,2) DEFAULT NULL,
+  `disponivel` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_livro` (`id_livro`),
   CONSTRAINT `estoque_ibfk_1` FOREIGN KEY (`id_livro`) REFERENCES `livros` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `estoque` (
 
 LOCK TABLES `estoque` WRITE;
 /*!40000 ALTER TABLE `estoque` DISABLE KEYS */;
+INSERT INTO `estoque` VALUES (1,1,50,49.90,1),(2,2,20,29.90,1),(3,3,30,24.90,1),(4,4,20,29.90,1),(5,6,30,19.90,1),(6,5,50,27.90,1);
 /*!40000 ALTER TABLE `estoque` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-24 22:28:37
+-- Dump completed on 2024-10-01  6:45:34

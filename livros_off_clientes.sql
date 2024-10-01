@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `livros_off` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `livros_off`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
 -- Host: localhost    Database: livros_off
@@ -29,14 +27,19 @@ CREATE TABLE `clientes` (
   `nome` varchar(50) NOT NULL,
   `sobrenome` varchar(200) NOT NULL,
   `data_de_nascimento` date NOT NULL,
-  `sexo` varchar(1) DEFAULT NULL,
-  `estado` varchar(40) NOT NULL,
-  `telefone` varchar(20) NOT NULL,
+  `sexo` enum('m','f','ni') DEFAULT NULL,
+  `telefone` varchar(20) DEFAULT NULL,
+  `estado` varchar(100) NOT NULL,
+  `cidade` varchar(100) NOT NULL,
+  `bairro` varchar(100) NOT NULL,
+  `rua` varchar(100) NOT NULL,
+  `numero` varchar(100) NOT NULL,
   `email` varchar(200) NOT NULL,
   `senha` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `telefone` (`telefone`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `reset_password_token` varchar(255) DEFAULT NULL,
+  `reset_password_expires` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +48,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'miguel','de sousa da silva','2000-02-02','m','Piauí','86994129921','miguelphb@gmail.com','$2b$10$Ee7mb.YfirTc0S2mn3jA7uiLlgGyZ9GuIP.fINn54Rp1dDpFiSOn2');
+INSERT INTO `clientes` VALUES (1,'miguel','de sousa da silva','2003-03-25','m','86994911088','Piauí','Parnaíba','N. Senhora de Fátima','Rua Santa Lúcia','190','miguelphb@gmail.com','$2b$10$Bt2pfSYjRKeUDl/MlHF8mOuam1ybtWlcitTgjfZ6/APefoavXq5L.',NULL,NULL),(2,'gabriel','rocha machado','2003-09-28','m','86994909114','Piauí','Parnaíba','São José','Av. Marquês de Paranaguá','190','gabriel.rochaphb@gmail.com','$2b$10$AQYAAgPkPULHPrVi73dr0.jQMm/CLWluBkOz5rb3J6G./3hTBxdsW',NULL,NULL);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-24 22:28:37
+-- Dump completed on 2024-10-01  6:45:34

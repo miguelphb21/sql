@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `livros_off` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `livros_off`;
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
 -- Host: localhost    Database: livros_off
 -- ------------------------------------------------------
--- Server version	8.0.38
+-- Server version	8.0.39-0ubuntu0.24.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -18,35 +16,29 @@ USE `livros_off`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `clientes`
+-- Table structure for table `autor`
 --
 
-DROP TABLE IF EXISTS `clientes`;
+DROP TABLE IF EXISTS `autor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `clientes` (
+CREATE TABLE `autor` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(50) NOT NULL,
-  `sobrenome` varchar(200) NOT NULL,
-  `data_de_nascimento` date NOT NULL,
-  `sexo` varchar(1) DEFAULT NULL,
-  `estado` varchar(40) NOT NULL,
-  `telefone` varchar(20) NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `senha` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `telefone` (`telefone`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `nome` varchar(255) DEFAULT NULL,
+  `nacionalidade` varchar(150) DEFAULT NULL,
+  `data_de_nascimento` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `clientes`
+-- Dumping data for table `autor`
 --
 
-LOCK TABLES `clientes` WRITE;
-/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'miguel','de sousa da silva','2000-02-02','m','Piauí','86994129921','miguelphb@gmail.com','$2b$10$Ee7mb.YfirTc0S2mn3jA7uiLlgGyZ9GuIP.fINn54Rp1dDpFiSOn2'),(2,'gabriel','Rocha Machado','2024-08-01','m','Piauí','86994911088','gabriel.rochaphb@gmail.com','$2b$10$Jy4frbmANy7tHdcz9/W/nejorQFBf0.HodTVP.Cu1wY9XNgxwvB.q');
-/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
+LOCK TABLES `autor` WRITE;
+/*!40000 ALTER TABLE `autor` DISABLE KEYS */;
+INSERT INTO `autor` VALUES (1,'Machado de Assis','brasileiro','1839-06-21'),(2,'Raphael Montes','brasileiro','1990-09-22'),(3,'Junji Ito','japonês','1963-07-31'),(4,'J. K. Rowling','britânica','1965-07-31');
+/*!40000 ALTER TABLE `autor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -58,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-25 10:49:26
+-- Dump completed on 2024-10-01  6:45:34
