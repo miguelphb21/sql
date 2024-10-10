@@ -117,10 +117,5 @@ CREATE TABLE carrinho (
 
 CREATE TABLE pedidos (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    id_cliente int,
-    id_livro int,
-    quantidade INT NOT NULL,
-    preco DECIMAL(10 , 2 ),
-	foreign key(id_cliente) references clientes(id),
-    foreign key(id_livro) references livros(id)
-);
+   
+   
