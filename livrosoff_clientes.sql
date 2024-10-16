@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `livros_off` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `livros_off`;
+CREATE DATABASE  IF NOT EXISTS `livrosoff` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `livrosoff`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
--- Host: localhost    Database: livros_off
+-- Host: localhost    Database: livrosoff
 -- ------------------------------------------------------
 -- Server version	8.0.39-0ubuntu0.24.04.2
 
@@ -18,31 +18,34 @@ USE `livros_off`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `estoque`
+-- Table structure for table `clientes`
 --
 
-DROP TABLE IF EXISTS `estoque`;
+DROP TABLE IF EXISTS `clientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `estoque` (
+CREATE TABLE `clientes` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `id_livro` int DEFAULT NULL,
-  `quantidade` int DEFAULT NULL,
-  `disponivel` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_livro` (`id_livro`),
-  CONSTRAINT `estoque_ibfk_1` FOREIGN KEY (`id_livro`) REFERENCES `livros` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `nome` varchar(100) DEFAULT NULL,
+  `data_de_nascimento` date DEFAULT NULL,
+  `endereco` varchar(100) DEFAULT NULL,
+  `sexo` enum('m','f','ni') DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `senha` varchar(100) DEFAULT NULL,
+  `reset_password_token` varchar(255) DEFAULT NULL,
+  `reset_password_expires` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `estoque`
+-- Dumping data for table `clientes`
 --
 
-LOCK TABLES `estoque` WRITE;
-/*!40000 ALTER TABLE `estoque` DISABLE KEYS */;
-INSERT INTO `estoque` VALUES (1,1,50,1),(2,2,20,1),(3,3,30,1),(4,4,20,1),(5,6,30,1),(6,5,50,1);
-/*!40000 ALTER TABLE `estoque` ENABLE KEYS */;
+LOCK TABLES `clientes` WRITE;
+/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+INSERT INTO `clientes` VALUES (1,'gabriel machado','2002-01-30','rua b, 30, bairro b','m','gabrielphb@gmail.com','$2b$10$9cQvYbthpBXGMVcydZ0o7OxTYGnmbE16zi6b6kRCmHWsjeM01QjY2',NULL,NULL),(2,'miguel sousa','2003-02-20','rua a, 20, bairro a','m','miguelphb14@gmail.com','$2b$10$kGq9hfpCJ8ycBWpjiHhe0O.lU6h.nnwA2d9nAWvN/GkCwE6NGRmE6',NULL,NULL);
+/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-16  8:24:44
+-- Dump completed on 2024-10-16  8:56:04

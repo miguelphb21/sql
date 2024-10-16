@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `livros_off` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `livros_off`;
+CREATE DATABASE  IF NOT EXISTS `livrosoff` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `livrosoff`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
--- Host: localhost    Database: livros_off
+-- Host: localhost    Database: livrosoff
 -- ------------------------------------------------------
 -- Server version	8.0.39-0ubuntu0.24.04.2
 
@@ -18,30 +18,30 @@ USE `livros_off`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `pedidos`
+-- Table structure for table `estoque`
 --
 
-DROP TABLE IF EXISTS `pedidos`;
+DROP TABLE IF EXISTS `estoque`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pedidos` (
+CREATE TABLE `estoque` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `id_carrinho` int DEFAULT NULL,
-  `pedido_entregue` tinyint(1) DEFAULT '0',
+  `id_livro` int DEFAULT NULL,
+  `quantidade` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_carrinho` (`id_carrinho`),
-  CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`id_carrinho`) REFERENCES `carrinho` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `id_livro` (`id_livro`),
+  CONSTRAINT `estoque_ibfk_1` FOREIGN KEY (`id_livro`) REFERENCES `livros` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pedidos`
+-- Dumping data for table `estoque`
 --
 
-LOCK TABLES `pedidos` WRITE;
-/*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
-INSERT INTO `pedidos` VALUES (1,1,0),(2,2,0);
-/*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
+LOCK TABLES `estoque` WRITE;
+/*!40000 ALTER TABLE `estoque` DISABLE KEYS */;
+INSERT INTO `estoque` VALUES (1,1,30),(2,2,30),(3,3,30),(4,4,30),(5,5,30),(6,6,30),(7,7,30),(8,18,25),(9,19,22);
+/*!40000 ALTER TABLE `estoque` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-16  8:24:44
+-- Dump completed on 2024-10-16  8:56:04
