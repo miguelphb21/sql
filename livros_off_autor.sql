@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `livrosoff` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `livrosoff`;
+CREATE DATABASE  IF NOT EXISTS `livros_off` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `livros_off`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
--- Host: localhost    Database: livrosoff
+-- Host: localhost    Database: livros_off
 -- ------------------------------------------------------
 -- Server version	8.0.39-0ubuntu0.24.04.2
 
@@ -18,13 +18,29 @@ USE `livrosoff`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `estoque`
+-- Table structure for table `autor`
 --
 
-LOCK TABLES `estoque` WRITE;
-/*!40000 ALTER TABLE `estoque` DISABLE KEYS */;
-INSERT INTO `estoque` VALUES (1,1,30),(2,2,30),(3,3,30),(4,4,30),(5,5,30),(6,6,30),(7,7,30),(8,18,25),(9,19,22);
-/*!40000 ALTER TABLE `estoque` ENABLE KEYS */;
+DROP TABLE IF EXISTS `autor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `autor` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) DEFAULT NULL,
+  `nacionalidade` varchar(150) DEFAULT NULL,
+  `data_de_nascimento` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `autor`
+--
+
+LOCK TABLES `autor` WRITE;
+/*!40000 ALTER TABLE `autor` DISABLE KEYS */;
+INSERT INTO `autor` VALUES (1,'Machado de Assis','brasileiro','1839-06-21'),(2,'Raphael Montes','brasileiro','1990-09-22'),(3,'Junji Ito','japonês','1963-07-31'),(4,'J. K. Rowling','britânica','1965-07-31');
+/*!40000 ALTER TABLE `autor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -36,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-16  0:57:35
+-- Dump completed on 2024-10-16  8:24:44

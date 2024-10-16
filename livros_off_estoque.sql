@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `livrosoff` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `livrosoff`;
+CREATE DATABASE  IF NOT EXISTS `livros_off` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `livros_off`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
--- Host: localhost    Database: livrosoff
+-- Host: localhost    Database: livros_off
 -- ------------------------------------------------------
 -- Server version	8.0.39-0ubuntu0.24.04.2
 
@@ -18,13 +18,31 @@ USE `livrosoff`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `autor`
+-- Table structure for table `estoque`
 --
 
-LOCK TABLES `autor` WRITE;
-/*!40000 ALTER TABLE `autor` DISABLE KEYS */;
-INSERT INTO `autor` VALUES (1,'machado de assis','brasileiro'),(2,'raphael montes','brasileiro'),(3,'junji ito','japonês'),(4,'j.k rowling','britânica');
-/*!40000 ALTER TABLE `autor` ENABLE KEYS */;
+DROP TABLE IF EXISTS `estoque`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `estoque` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_livro` int DEFAULT NULL,
+  `quantidade` int DEFAULT NULL,
+  `disponivel` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_livro` (`id_livro`),
+  CONSTRAINT `estoque_ibfk_1` FOREIGN KEY (`id_livro`) REFERENCES `livros` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `estoque`
+--
+
+LOCK TABLES `estoque` WRITE;
+/*!40000 ALTER TABLE `estoque` DISABLE KEYS */;
+INSERT INTO `estoque` VALUES (1,1,50,1),(2,2,20,1),(3,3,30,1),(4,4,20,1),(5,6,30,1),(6,5,50,1);
+/*!40000 ALTER TABLE `estoque` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -36,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-16  0:57:36
+-- Dump completed on 2024-10-16  8:24:44
