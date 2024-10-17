@@ -1,0 +1,77 @@
+create database livrosoff;
+
+use livrosoff;
+
+CREATE TABLE clientes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100),
+    data_de_nascimento DATE,
+    endereco VARCHAR(100),
+    sexo ENUM('m', 'f', 'ni'),
+    email VARCHAR(100),
+    senha VARCHAR(100)
+);
+
+ALTER TABLE clientes ADD COLUMN reset_password_token VARCHAR(255) NULL,
+ADD COLUMN reset_password_expires DATETIME NULL;
+
+
+
+CREATE TABLE livros (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    titulo varchar(100),
+    genero varchar(100),
+    id_autor INT,
+    FOREIGN KEY (id_autor)
+	REFERENCES autor(id)
+);
+
+-- adicionar coluna de valor nos livros
+alter table livros add column preco decimal(10,2) after titulo;
+
+
+
+
+CREATE TABLE autor (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(100),
+  nacionalidade VARCHAR(50)
+);
+
+CREATE TABLE estoque (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  id_livro INT,
+  quantidade INT,
+  FOREIGN KEY (id_livro) REFERENCES livros(id)
+);
+
+
+
+CREATE TABLE carrinho (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  id_cliente INT,
+  id_livro INT,
+  data_criacao DATE,
+  quantidade INT,
+  FOREIGN KEY (id_cliente) REFERENCES clientes(id),
+  FOREIGN KEY (id_livro) REFERENCES livros(id)
+);
+
+
+
+CREATE TABLE pedidos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_cliente INT,
+    id_livro INT,
+    data_pedido DATETIME,
+    quantidade INT,
+    status_pedido ENUM('pendente', 'processando', 'enviado', 'entregue'),
+    valor_unitario DECIMAL(10 , 2 ),
+    FOREIGN KEY (id_cliente)
+        REFERENCES clientes (id),
+	FOREIGN KEY (id_livro) REFERENCES livros(id)
+);
+
+
+
+
